@@ -209,7 +209,7 @@ colourKeyboard() {
 
 
 chooseWord $1
-for i in {1..6}
+for round in {1..6}
 do
   valid=false
   getWord
@@ -229,7 +229,7 @@ do
   then
     echo -e "\nYou Win"
     break
-  elif [ $i -eq 6 ]
+  elif [ $round -eq 6 ]
   then
     echo -e "\nYou Lose"
     echo "The word was $answer."
