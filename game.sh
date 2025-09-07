@@ -78,6 +78,7 @@ checkWord () {
     if [ ${colours[letterIndex]} = "green" ]
     then
       colouredWord="$colouredWord$GREEN${word:$letterIndex:1}$ENDCOLOUR"
+      colourKeyboard ${word:$letterIndex:1} $GREEN
     else
       inWord=false
       for answerLetterIndex in $(seq 0 $((${#currentAnswer} - 1)))
@@ -92,9 +93,11 @@ checkWord () {
       if $inWord
       then
         colouredWord="$colouredWord$YELLOW${word:$letterIndex:1}$ENDCOLOUR"
+        colourKeyboard ${word:$letterIndex:1} $YELLOW
         currentAnswer="${currentAnswer:0:$answerLetterIndex}${currentAnswer:$(($answerLetterIndex + 1))}"
       else
         colouredWord="$colouredWord$RED${word:$letterIndex:1}$ENDCOLOUR"
+        colourKeyboard ${word:$letterIndex:1} $RED
       fi
     fi
   done
@@ -157,7 +160,35 @@ displayKeyboard() {
   echo
 }
 
-displayKeyboard
+colourKeyboard() {
+  for charIndex in $(seq 0 $((${#firstRow[@]} - 1)))
+  do
+    if [ ${firstRow[$charIndex]} = $1 ]
+    then
+      displayFirstRow[$charIndex]=$2
+      return
+    fi
+  done
+
+  for charIndex in $(seq 0 $((${#secondRow[@]} - 1)))
+  do
+    if [ ${secondRow[$charIndex]} = $1 ]
+    then
+      displaySecondRow[$charIndex]=$2
+      return
+    fi
+  done
+
+  for charIndex in $(seq 0 $((${#thirdRow[@]} - 1)))
+  do
+    if [ ${thirdRow[$charIndex]} = $1 ]
+    then
+      displayThirdRow[$charIndex]=$2
+      return
+    fi
+  done
+}
+
 
 chooseWord $1
 for i in {1..6}
@@ -174,6 +205,7 @@ do
 
   checkWord
   displayPreviousGuesses
+  displayKeyboard
 
   if $win
   then
