@@ -9,6 +9,9 @@ ENDCOLOUR="\e[0m"
 win=false
 previousGuesses=()
 
+
+
+
 getWord() {
   word=""
   while [ ${#word} -ne 5 ]
@@ -106,6 +109,46 @@ displayPreviousGuesses() {
     echo -e $guess
     ((num++))
   done
+}
+
+displayKeyboard() {
+  local COLUMNS=$(tput cols)
+  local firstRow=("q" "w" "e" "r" "t" "y" "u" "i" "o" "p")
+  local firstRowSpace=$(($(($COLUMNS - ${#firstRow[@]} - ${#firstRow[@]} + 1)) / 2))
+  local secondRow=("a" "s" "d" "f" "g" "h" "j" "k" "l")
+  local secondRowSpace=$(($(($COLUMNS - ${#secondRow[@]} - ${#secondRow[@]} + 1)) / 2))
+  local thirdRow=("z" "x" "c" "v" "b" "n" "m")
+  local thirdRowSpace=$(($(($COLUMNS - ${#thirdRow[@]} - ${#thirdRow[@]} + 1)) / 2))
+
+  for i in $(seq 1 $firstRowSpace)
+  do
+    echo -n " "
+  done
+  for char in ${firstRow[@]}
+  do
+    echo -n "$char " 
+  done
+  echo
+
+  for i in $(seq 1 $secondRowSpace)
+  do
+    echo -n " "
+  done
+  for char in ${secondRow[@]}
+  do
+    echo -n "$char " 
+  done
+  echo
+
+  for i in $(seq 1 $thirdRowSpace)
+  do
+    echo -n " "
+  done
+  for char in ${thirdRow[@]}
+  do
+    echo -n "$char " 
+  done
+  echo
 }
 
 
