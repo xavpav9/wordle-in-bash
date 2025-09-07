@@ -9,6 +9,12 @@ ENDCOLOUR="\e[0m"
 win=false
 previousGuesses=()
 
+firstRow=("q" "w" "e" "r" "t" "y" "u" "i" "o" "p")
+displayFirstRow=("" "" "" "" "" "" "" "" "" "")
+secondRow=("a" "s" "d" "f" "g" "h" "j" "k" "l")
+displaySecondRow=("" "" "" "" "" "" "" "" "")
+thirdRow=("z" "x" "c" "v" "b" "n" "m")
+displayThirdRow=("" "" "" "" "" "" "")
 
 
 
@@ -124,9 +130,9 @@ displayKeyboard() {
   do
     echo -n " "
   done
-  for char in ${firstRow[@]}
+  for charIndex in $(seq 0 $((${#firstRow[@]} - 1)))
   do
-    echo -n "$char " 
+    echo -ne "${displayFirstRow[charIndex]}${firstRow[charIndex]}$ENDCOLOUR " 
   done
   echo
 
@@ -134,9 +140,9 @@ displayKeyboard() {
   do
     echo -n " "
   done
-  for char in ${secondRow[@]}
+  for charIndex in $(seq 0 $((${#secondRow[@]} - 1)))
   do
-    echo -n "$char " 
+    echo -ne "${displaySecondRow[charIndex]}${secondRow[charIndex]}$ENDCOLOUR " 
   done
   echo
 
@@ -144,13 +150,14 @@ displayKeyboard() {
   do
     echo -n " "
   done
-  for char in ${thirdRow[@]}
+  for charIndex in $(seq 0 $((${#thirdRow[@]} - 1)))
   do
-    echo -n "$char " 
+    echo -ne "${displayThirdRow[charIndex]}${thirdRow[charIndex]}$ENDCOLOUR " 
   done
   echo
 }
 
+displayKeyboard
 
 chooseWord $1
 for i in {1..6}
