@@ -165,7 +165,13 @@ colourKeyboard() {
   do
     if [ ${firstRow[$charIndex]} = $1 ]
     then
-      displayFirstRow[$charIndex]=$2
+      if [ ${displayFirstRow[$charIndex]} = $RED ] || [ -z ${displayFirstRow[$charIndex]} ]
+      then
+        displayFirstRow[$charIndex]=$2
+      elif [ ${displayFirstRow[$charIndex]} = $YELLOW ] && [ $2 = $GREEN ]
+      then
+        displayFirstRow[$charIndex]=$2
+      fi
       return
     fi
   done
@@ -174,7 +180,13 @@ colourKeyboard() {
   do
     if [ ${secondRow[$charIndex]} = $1 ]
     then
-      displaySecondRow[$charIndex]=$2
+      if [ ${displaySecondRow[$charIndex]} = $RED ] || [ -z ${displaySecondRow[$charIndex]} ]
+      then
+        displaySecondRow[$charIndex]=$2
+      elif [ ${displaySecondRow[$charIndex]} = $YELLOW ] && [ $2 = $GREEN ]
+      then
+        displaySecondRow[$charIndex]=$2
+      fi
       return
     fi
   done
@@ -183,7 +195,13 @@ colourKeyboard() {
   do
     if [ ${thirdRow[$charIndex]} = $1 ]
     then
-      displayThirdRow[$charIndex]=$2
+      if [ ${displayThirdRow[$charIndex]} = $RED ] || [ -z ${displayThirdRow[$charIndex]} ]
+      then
+        displayThirdRow[$charIndex]=$2
+      elif [ ${displayThirdRow[$charIndex]} = $YELLOW ] && [ $2 = $GREEN ]
+      then
+        displayThirdRow[$charIndex]=$2
+      fi
       return
     fi
   done
