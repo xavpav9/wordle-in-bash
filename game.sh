@@ -165,7 +165,7 @@ colourKeyboard() {
   do
     if [ ${firstRow[$charIndex]} = $1 ]
     then
-      if [ ${displayFirstRow[$charIndex]} = $RED ] || [ -z ${displayFirstRow[$charIndex]} ]
+      if [ "${displayFirstRow[$charIndex]}" = $RED ] || [ -z "${displayFirstRow[$charIndex]}" ]
       then
         displayFirstRow[$charIndex]=$2
       elif [ ${displayFirstRow[$charIndex]} = $YELLOW ] && [ $2 = $GREEN ]
@@ -180,7 +180,7 @@ colourKeyboard() {
   do
     if [ ${secondRow[$charIndex]} = $1 ]
     then
-      if [ ${displaySecondRow[$charIndex]} = $RED ] || [ -z ${displaySecondRow[$charIndex]} ]
+      if [ "${displaySecondRow[$charIndex]}" = "$RED" ] || [ -z "${displaySecondRow[$charIndex]}" ]
       then
         displaySecondRow[$charIndex]=$2
       elif [ ${displaySecondRow[$charIndex]} = $YELLOW ] && [ $2 = $GREEN ]
@@ -195,7 +195,7 @@ colourKeyboard() {
   do
     if [ ${thirdRow[$charIndex]} = $1 ]
     then
-      if [ ${displayThirdRow[$charIndex]} = $RED ] || [ -z ${displayThirdRow[$charIndex]} ]
+      if [ "${displayThirdRow[$charIndex]}" = "$RED" ] || [ -z "${displayThirdRow[$charIndex]}" ]
       then
         displayThirdRow[$charIndex]=$2
       elif [ ${displayThirdRow[$charIndex]} = $YELLOW ] && [ $2 = $GREEN ]
