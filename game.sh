@@ -37,10 +37,10 @@ chooseWord() {
     checkList $1
     if $valid
     then
-      echo -e "Valid starting word."
+      echo -e "${GREEN}Valid starting word.${ENDCOLOUR}"
       answer=$1
     else
-      echo -e "Invalid starting word \"$1\", so picking a random word."
+      echo -e "${YELLOW}Invalid starting word \"${RED}$1${YELLOW}\", so picking a random word.${ENDCOLOUR}"
       lines=$(wc -l wordle-list | cut -d" " -f1)
       line=$(($RANDOM % $lines))
       answer=$(cat -n wordle-list | grep -w $line | cut -f2)
